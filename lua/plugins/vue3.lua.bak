@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -10,6 +14,17 @@ return {
         },
       },
     },
+  },
+  {
+    "xna00/unocss-language-server",
+    dependencies = {
+      "mrshmllow/document-color.nvim",
+    },
+    config = function()
+      require("document-color").setup({
+        mode = "background", -- 或 "foreground"
+      })
+    end,
   },
   {
     "Exafunction/codeium.vim",
@@ -72,6 +87,17 @@ return {
         vtsls = {
           autostart = false,
           enable = false,
+        },
+        unocss = {
+          filetypes = { "html", "javascriptreact", "typescriptreact", "vue", "svelte" },
+          root_dir = require("lspconfig.util").root_pattern(
+            "unocss.config.js",
+            "unocss.config.ts",
+            "uno.config.js",
+            "uno.config.ts"
+          ),
+          -- 启用详细日志
+          logLevel = "verbose",
         },
       },
     },
