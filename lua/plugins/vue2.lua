@@ -1,32 +1,4 @@
 return {
-  {
-    "akinsho/bufferline.nvim",
-    opts = {
-      options = {
-        -- 设置为 true 让标签栏始终显示
-        always_show_bufferline = true,
-        -- -- 其他选项...
-        -- show_buffer_close_icons = true,
-        -- show_close_icon = true,
-        -- -- 可以设置标签样式
-        -- separator_style = "slant", -- 可选: "thick", "thin", "slant", "padded_slant"
-      },
-    },
-  },
-  {
-    -- TODO 高亮注释
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      highlight = {
-
-        pattern = [[.*<(KEYWORDS)\s*]], -- 匹配，而不带额外的冒号。您可能会得到误报
-      },
-      search = {
-        pattern = [[\b(KEYWORDS)\b]], -- 匹配，而不带额外的冒号。您可能会得到误报
-      },
-    },
-  },
   -- 添加 mason 相关配置
   {
     "williamboman/mason.nvim",
@@ -140,27 +112,6 @@ return {
       },
     },
   },
-  {
-    "Exafunction/codeium.vim",
-    event = "BufEnter",
-
-    config = function()
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set("i", "<C-g>", function()
-        return vim.fn["codeium#Accept"]()
-      end, { expr = true, silent = true })
-      vim.keymap.set("i", "<c-;>", function()
-        return vim.fn["codeium#CycleCompletions"](1)
-      end, { expr = true, silent = true })
-      vim.keymap.set("i", "<c-,>", function()
-        return vim.fn["codeium#CycleCompletions"](-1)
-      end, { expr = true, silent = true })
-      vim.keymap.set("i", "<c-x>", function()
-        return vim.fn["codeium#Clear"]()
-      end, { expr = true, silent = true })
-    end,
-  },
-  { import = "lazyvim.plugins.extras.linting.eslint" },
   { -- 这里配置 stylelint 保存自动格式化
     "neovim/nvim-lspconfig",
     opts = {
@@ -180,23 +131,6 @@ return {
             "astro",
             "json", -- 添加 json 支持
           },
-        },
-      },
-    },
-  },
-  { import = "lazyvim.plugins.extras.formatting.prettier" },
-  {
-    "nvim-telescope/telescope.nvim",
-    -- change some options
-    opts = {
-      defaults = {
-        file_ignore_patterns = {
-          "node_modules",
-          "%.git/",
-          "%.DS_Store",
-          "%.hbuilderx",
-          "%.history",
-          "dist",
         },
       },
     },

@@ -1,3 +1,5 @@
+-- TODO  主题和插件可以在这里找到 https://dotfyle.com/neovim/Colorscheme/top
+-- 在文件底部设置主题
 local base = {
   red = "#ff657a",
   maroon = "#F29BA7",
@@ -16,9 +18,10 @@ local extend_base = function(value)
 end
 
 return {
-  {
+  { -- catppuccin(自定义配置)
     "catppuccin/nvim",
-    -- optional = true,
+    lazy = true,
+    cmd = "Colorscheme", -- 仅在切换主题时加载
     opts = {
       background = {
         dark = "frappe",
@@ -53,10 +56,34 @@ return {
       },
     },
   },
+  { -- arctic (类似vscode)
+    "rockyzhang24/arctic.nvim",
+    branch = "v2",
+    dependencies = { "rktjmp/lush.nvim" },
+    priority = 1000, -- 确保主题最先加载(给当前使用的主题加这个配置,其他的都加lazy)
+  },
+  { -- nightfox (丰富)
+    "EdenEast/nightfox.nvim",
+    lazy = true,
+    cmd = "Colorscheme", -- 仅在切换主题时加载
+  },
+  --  gruvbox
+  {
+    "ellisonleao/gruvbox.nvim",
+    lazy = true,
+    cmd = "Colorscheme", -- 仅在切换主题时加载
+  },
+  -- kanagawa(神奈川)
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = true,
+    cmd = "Colorscheme", -- 仅在切换主题时加载
+  },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      -- 设置当前使用的主题
+      colorscheme = "arctic",
     },
   },
 }

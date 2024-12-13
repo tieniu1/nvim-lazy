@@ -18,8 +18,6 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- 开启vscode支持
-    { import = "lazyvim.plugins.extras.vscode" },
     -- 其他的插件
     { import = "plugins" },
   },
@@ -32,7 +30,8 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  -- 下载时的主题
+  install = { colorscheme = { "default" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
