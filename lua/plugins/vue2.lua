@@ -100,6 +100,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
+      ensure_installed = { "vue", "scss", "html", "css", "javascript" }, -- 根据需要添加其他语言
       textobjects = {
         select = {
           enable = true,
