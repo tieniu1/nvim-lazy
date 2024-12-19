@@ -113,7 +113,7 @@ return {
       },
     },
   },
-  { -- 这里配置 stylelint 保存自动格式化
+  { -- eslint 支持json
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
