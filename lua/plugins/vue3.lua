@@ -3,21 +3,6 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        -- -- 1. 添加 colorProvider 能力
-        -- capabilities = {
-        --   textDocument = {
-        --     colorProvider = {
-        --       dynamicRegistration = true,
-        --     },
-        --   },
-        -- },
-        --
-        -- -- 2. 在 on_attach 中启用 document-color
-        -- on_attach = function(client, bufnr)
-        --   if client.server_capabilities.colorProvider then
-        --     require("document-color").buf_attach(bufnr)
-        --   end
-        -- end,
         -- 配置 eslint
         eslint = {
           -- 添加对 json 文件的支持
@@ -36,6 +21,21 @@ return {
         },
         unocss = { -- 如果需要禁用unocss，也要把这里禁用
           filetypes = { "vue" },
+          -- 1. 添加 colorProvider 能力
+          capabilities = {
+            textDocument = {
+              colorProvider = {
+                dynamicRegistration = true,
+              },
+            },
+          },
+
+          -- 2. 在 on_attach 中启用 document-color
+          on_attach = function(client, bufnr)
+            if client.server_capabilities.colorProvider then
+              require("document-color").buf_attach(bufnr)
+            end
+          end,
         },
       },
     },
@@ -48,10 +48,10 @@ return {
       },
     },
   },
-  -- {
-  --   "mrshmllow/document-color.nvim",
-  --   opts = {
-  --     mode = "background",
-  --   },
-  -- },
+  {
+    "mrshmllow/document-color.nvim",
+    opts = {
+      mode = "background",
+    },
+  },
 }
