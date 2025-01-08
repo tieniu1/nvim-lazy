@@ -8,6 +8,7 @@ return {
         "some-sass-language-server", -- sass支持
         "typescript-language-server", -- js/ts支持
         "stylelint-lsp", -- stylelint 支持
+        "html-lsp", -- html支持
       },
     },
   },
