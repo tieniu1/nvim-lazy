@@ -6,7 +6,9 @@ return {
   -- 开启vscode支持
   { import = "lazyvim.plugins.extras.vscode" },
   -- telescope
-  { import = "lazyvim.plugins.extras.editor.telescope" },
+  -- { import = "lazyvim.plugins.extras.editor.telescope" },
+  -- fzf
+  { import = "lazyvim.plugins.extras.editor.fzf" },
   -- yanky
   { import = "lazyvim.plugins.extras.coding.yanky" },
   -- codeium
