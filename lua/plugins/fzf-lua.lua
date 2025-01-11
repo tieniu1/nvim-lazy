@@ -9,14 +9,14 @@ return {
       },
     },
     files = {
-      -- 配置文件搜索，包含隐藏文件，但排除 .git 目录
-      fd_opts = "--hidden --exclude .git",
+      -- 配置文件搜索，包含隐藏文件，但排除 .git 和 uni_modules 目录
+      fd_opts = "--hidden --exclude .git --exclude uni_modules",
       -- 或者使用 rg 命令
       -- rg_opts = "--hidden --files --glob '!.git'",
     },
     grep = {
-      -- 配置文本搜索，包含隐藏文件，但排除 .git 和libs 目录
-      rg_opts = "--hidden --column --line-number --no-heading --color=always --smart-case --max-columns=512 --glob '!.git' --glob '!libs'",
+      -- 配置文本搜索，包含隐藏文件，但排除 .git 、libs、uni_modules 目录
+      rg_opts = "--hidden --column --line-number --no-heading --color=always --smart-case --max-columns=512 --glob '!.git' --glob '!libs' --glob '!uni_modules'",
     },
     -- 启用 chafa 图片预览
     previewer = {

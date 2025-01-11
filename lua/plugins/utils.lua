@@ -110,4 +110,107 @@ return {
       -- },
     },
   },
+  {
+    "robitx/gp.nvim",
+    config = function()
+      local conf = {
+        providers = {
+          openai = {
+            -- 直接替换为你的兼容端点
+            endpoint = "https://api.deepseek.com/v1/chat/completions",
+            -- 你的 API key
+            secret = os.getenv("OPENAI_API_KEY"),
+          },
+        },
+        default_command_agent = "deepseek-chat",
+        default_chat_agent = "deepseek-chat",
+        agents = {
+          {
+            name = "deepseek-chat", -- 你可以自定义名字
+            provider = "openai",
+            chat = true, -- 用于聊天
+            command = true, -- 用于命令
+            model = { model = "deepseek-chat" }, -- 在这里指定模型
+            system_prompt = "You are a helpful AI assistant.",
+          },
+        },
+      }
+      require("gp").setup(conf)
+
+      require("which-key").add({
+        -- VISUAL 模式映射
+        {
+          mode = { "v" },
+          nowait = true,
+          remap = false,
+          -- { "<C-g><C-t>", ":<C-u>'<,'>GpChatNew tabnew<cr>", desc = "新建聊天（新标签页）" },
+          -- { "<C-g><C-x>", ":<C-u>'<,'>GpChatNew split<cr>", desc = "新建聊天（水平分割）" },
+          -- { "<C-g>c", ":<C-u>'<,'>GpChatNew<cr>", desc = "新建聊天" },
+          { "<C-g>a", ":<C-u>'<,'>GpAppend<cr>", desc = "在选中内容后追加" },
+          { "<C-g>b", ":<C-u>'<,'>GpPrepend<cr>", desc = "在选中内容前追加" },
+          { "<C-g>c", ":<C-u>'<,'>GpChatNew vsplit<cr>", desc = "新建聊天（垂直分割）" },
+          { "<C-g>g", group = "生成到新位置.." },
+          { "<C-g>gp", ":<C-u>'<,'>GpPopup<cr>", desc = "生成到弹出窗口" },
+          { "<C-g>gv", ":<C-u>'<,'>GpVnew<cr>", desc = "生成到垂直分割" },
+          { "<C-g>i", ":<C-u>'<,'>GpImplement<cr>", desc = "实现选中内容" },
+          { "<C-g>n", "<cmd>GpNextAgent<cr>", desc = "下一个 Agent" },
+          { "<C-g>p", ":<C-u>'<,'>GpChatPaste<cr>", desc = "粘贴到聊天" },
+          { "<C-g>r", ":<C-u>'<,'>GpRewrite<cr>", desc = "重写选中内容" },
+          { "<C-g>s", "<cmd>GpStop<cr>", desc = "停止生成" },
+          { "<C-g>t", ":<C-u>'<,'>GpChatToggle<cr>", desc = "切换聊天窗口" },
+          -- { "<C-g>gt", ":<C-u>'<,'>GpTabnew<cr>", desc = "生成到新标签页" },
+          -- { "<C-g>ge", ":<C-u>'<,'>GpEnew<cr>", desc = "生成到新缓冲区" },
+          -- { "<C-g>gn", ":<C-u>'<,'>GpNew<cr>", desc = "生成到新窗口" },
+        },
+
+        -- NORMAL 模式映射
+        {
+          mode = { "n" },
+          nowait = true,
+          remap = false,
+          -- { "<C-g><C-t>", "<cmd>GpChatNew tabnew<cr>", desc = "新建聊天（新标签页）" },
+          -- { "<C-g><C-x>", "<cmd>GpChatNew split<cr>", desc = "新建聊天（水平分割）" },
+          -- { "<C-g>c", "<cmd>GpChatNew<cr>", desc = "新建聊天" },
+          { "<C-g>a", "<cmd>GpAppend<cr>", desc = "在当前位置后追加" },
+          { "<C-g>b", "<cmd>GpPrepend<cr>", desc = "在当前位置前追加" },
+          { "<C-g>c", "<cmd>GpChatNew vsplit<cr>", desc = "新建聊天（垂直分割）" },
+          { "<C-g>f", "<cmd>GpChatFinder<cr>", desc = "聊天查找器" },
+          { "<C-g>g", group = "生成到新位置.." },
+          { "<C-g>gp", "<cmd>GpPopup<cr>", desc = "生成到弹出窗口" },
+          { "<C-g>gv", "<cmd>GpVnew<cr>", desc = "生成到垂直分割" },
+          { "<C-g>n", "<cmd>GpNextAgent<cr>", desc = "下一个 Agent" },
+          { "<C-g>r", "<cmd>GpRewrite<cr>", desc = "行内重写" },
+          { "<C-g>s", "<cmd>GpStop<cr>", desc = "停止生成" },
+          { "<C-g>t", "<cmd>GpChatToggle<cr>", desc = "切换聊天窗口" },
+          -- { "<C-g>ge", "<cmd>GpEnew<cr>", desc = "生成到新缓冲区" },
+          -- { "<C-g>gn", "<cmd>GpNew<cr>", desc = "生成到新窗口" },
+          -- { "<C-g>gt", "<cmd>GpTabnew<cr>", desc = "生成到新标签页" },
+        },
+
+        -- INSERT 模式映射
+        {
+          mode = { "i" },
+          nowait = true,
+          remap = false,
+          -- { "<C-g><C-t>", "<cmd>GpChatNew tabnew<cr>", desc = "新建聊天（新标签页）" },
+          -- { "<C-g><C-x>", "<cmd>GpChatNew split<cr>", desc = "新建聊天（水平分割）" },
+          -- { "<C-g>c", "<cmd>GpChatNew<cr>", desc = "新建聊天" },
+          { "<C-g>a", "<cmd>GpAppend<cr>", desc = "在当前位置后追加" },
+          { "<C-g>b", "<cmd>GpPrepend<cr>", desc = "在当前位置前追加" },
+          { "<C-g>c", "<cmd>GpChatNew vsplit<cr>", desc = "新建聊天（垂直分割）" },
+          { "<C-g>f", "<cmd>GpChatFinder<cr>", desc = "聊天查找器" },
+          { "<C-g>g", group = "生成到新位置.." },
+          { "<C-g>gp", "<cmd>GpPopup<cr>", desc = "生成到弹出窗口" },
+          { "<C-g>gv", "<cmd>GpVnew<cr>", desc = "生成到垂直分割" },
+          { "<C-g>n", "<cmd>GpNextAgent<cr>", desc = "下一个 Agent" },
+          { "<C-g>r", "<cmd>GpRewrite<cr>", desc = "行内重写" },
+          { "<C-g>s", "<cmd>GpStop<cr>", desc = "停止生成" },
+          { "<C-g>t", "<cmd>GpChatToggle<cr>", desc = "切换聊天窗口" },
+          -- { "<C-g>ge", "<cmd>GpEnew<cr>", desc = "生成到新缓冲区" },
+          -- { "<C-g>gn", "<cmd>GpNew<cr>", desc = "生成到新窗口" },
+          -- { "<C-g>gt", "<cmd>GpTabnew<cr>", desc = "生成到新标签页" },
+        },
+      })
+    end,
+  },
 }
