@@ -9,8 +9,8 @@ return {
       },
     },
     files = {
-      -- 配置文件搜索，包含隐藏文件，但排除 .git 和 uni_modules 目录
-      fd_opts = "--hidden --exclude .git --exclude uni_modules",
+      -- 配置文件搜索，`--hidden`包含隐藏文件，`--exclude .git` 排除.git `--exclude uni_modules` 排除uni_modules 目录 `--type f` 只显示文件不显示文件夹
+      fd_opts = "--hidden --exclude .git --exclude uni_modules --type f",
       -- 或者使用 rg 命令
       -- rg_opts = "--hidden --files --glob '!.git'",
     },
