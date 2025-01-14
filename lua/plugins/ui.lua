@@ -5,6 +5,7 @@ return {
       options = {
         -- 设置为 true 让标签栏始终显示
         always_show_bufferline = true,
+        -- show_buffer_icons = true,
         -- -- 可以设置标签样式
         -- separator_style = "slant", -- 可选: "thick", "thin", "slant", "padded_slant"
         -- indicator = {
