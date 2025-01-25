@@ -6,7 +6,9 @@ return {
   -- 开启vscode支持
   { import = "lazyvim.plugins.extras.vscode" },
   -- telescope
-  { import = "lazyvim.plugins.extras.editor.telescope" },
+  -- { import = "lazyvim.plugins.extras.editor.telescope" },
+  -- fzf
+  { import = "lazyvim.plugins.extras.editor.fzf" },
   -- yanky
   { import = "lazyvim.plugins.extras.coding.yanky" },
   -- codeium
@@ -61,8 +63,8 @@ return {
 
         -- deepseek
         endpoint = "https://api.deepseek.com/v1",
-        -- model = "deepseek-chat",
-        model = "deepseek-coder",
+        model = "deepseek-reasoner",
+        -- model = "deepseek-coder",
 
         timeout = 30000, -- Timeout in milliseconds
         temperature = 0,
